@@ -5,7 +5,13 @@
  <select id="selectParam" resultType="com.app.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and active = 1
   </select>
+  <select id="selectParamNew" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and cb = #{carabayar} and kurs=#{kurs} and active = 1
+  </select>
   <select id="selectParamByType" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and cb = #{carabayar} and kurs=#{kurs} and active = 1
+  </select>
+    <select id="selectParamByTypeNew" resultType="com.app.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and active = 1
   </select>
     <select id="selectProductFunction" resultType="com.app.model.ProductFunction" parameterType="java.util.HashMap">

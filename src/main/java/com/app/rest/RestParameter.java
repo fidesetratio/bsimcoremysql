@@ -7,20 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Param;
+import com.app.model.product.Product;
+import com.app.model.product.ProductResult;
 import com.app.product.util.ProductParamUtil;
-import com.app.services.BsimServices;
+import com.app.request.ProductRequest;
+import com.app.services.Bsim;
 
 
 @RestController
 @RequestMapping("api")
 public class RestParameter {
 	@Autowired
-	private BsimServices bsimServices;
+	private Bsim bsimServices;
 	
 	@RequestMapping(value="/restTesting", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> restTesting( ) throws ParseException{
@@ -28,7 +32,15 @@ public class RestParameter {
 		return entity;
 	}
 
-	
+	@RequestMapping(value="/checkingall", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ProductResult> checkingall(@RequestBody ProductRequest request) throws ParseException{
+		Product product =  new Product(bsimServices, request);
+		ProductResult productResult = product.getResult();
+		ResponseEntity<ProductResult> response  = new ResponseEntity<ProductResult>(productResult,HttpStatus.OK);
+		return response;
+		
+	}
+		
 	
 
 	@RequestMapping(value="/paramTesting", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)

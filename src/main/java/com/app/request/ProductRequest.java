@@ -7,7 +7,7 @@ public class ProductRequest {
 	private int lsbs_id;
 	private int lsdbs_number;
 	private String kurs;
-	private String paymode;
+	private int paymode;
 	
 	private String function;
 	
@@ -38,10 +38,10 @@ public class ProductRequest {
 	public void setKurs(String kurs) {
 		this.kurs = kurs;
 	}
-	public String getPaymode() {
+	public int getPaymode() {
 		return paymode;
 	}
-	public void setPaymode(String paymode) {
+	public void setPaymode(int paymode) {
 		this.paymode = paymode;
 	}
 	public String getFunction() {

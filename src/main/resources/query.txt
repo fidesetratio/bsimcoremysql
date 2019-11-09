@@ -2,6 +2,9 @@ create table lst_params_app(
 	id int not null auto_increment,
 	lsbs_id int,
 	lsdbs_number int,
+	cb int,
+	kurs varchar(10),
+	special_case int,
 	param_type varchar(100),
 	variable_name varchar(100),
 	variable_type varchar(100),
@@ -21,11 +24,44 @@ create table lst_params_app(
 );
 
 insert into lst_params_app(
-lsbs_id,lsdbs_number,param_type,variable_name,variable_type,variable_value,allow_internal_input
+lsbs_id,lsdbs_number,cb,kurs,special_case,param_type,variable_name,variable_type,variable_value,allow_internal_input
 ,allow_as_output,is_mapping_object,object_name,object_var,object_var_type,object_var_def_val,
 object_validator_scripts,object_result_message,description,active)
 values(
-100,10,'initproduct','id','INT','0',0,0,0,'','','','','','','description',1);
+100,10,4,'01',0,'initproduct','id','INT','0',0,0,0,'','','','','','','description',1);
+
+insert into lst_params_app(
+lsbs_id,lsdbs_number,cb,kurs,special_case,param_type,variable_name,variable_type,variable_value,allow_internal_input
+,allow_as_output,is_mapping_object,object_name,object_var,object_var_type,object_var_def_val,
+object_validator_scripts,object_result_message,description,active)
+values(
+100,10,4,'01',0,'initproduct','total','INT','0',0,1,0,'','','','','','','total for sum',1);
+
+
+
+
+insert into lst_products_function(
+lsbs_id,lsdbs_number,cb,kurs,function_description,function_name,function_scripts,function_type,
+active,priority
+)values(100,10,4,'01','Starting point','start_point',' return \'hello world\'','SCRIPTS',1,1);
+
+
+insert into lst_products_function(
+lsbs_id,lsdbs_number,cb,kurs,function_description,function_name,function_scripts,function_type,
+active,priority
+)values(100,10,4,'01','Starting point','start_point',' println \"hello world\"','SCRIPTS',1,0);
+
+truncate lst_products_function;
+insert into lst_products_function(
+lsbs_id,lsdbs_number,cb,kurs,function_description,function_name,function_scripts,function_type,
+active,priority
+)values(100,10,4,'01','Starting point','start_point','total=total+500','SCRIPTS',1,1);
+
+insert into lst_products_function(
+lsbs_id,lsdbs_number,cb,kurs,function_description,function_name,function_scripts,function_type,
+active,priority
+)values(100,10,4,'01','Starting point','checking total','if( total > 0) { return "HEII INI KEBESARAN"}','SCRIPTS',1,2);
+
 
 
 
@@ -38,7 +74,8 @@ create table lst_products_function(
 	function_description varchar(100),
 	function_name varchar(100),
 	function_scripts varchar(1000),
-	 active int default 0,
-	 priority int default 0
+	function_type varchar(100),
+	active int default 0,
+	priority int default 0
 	
 );

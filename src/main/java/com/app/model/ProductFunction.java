@@ -1,4 +1,4 @@
-package com.app.model.product;
+package com.app.model;
 
 public class ProductFunction {
 	
