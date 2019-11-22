@@ -15,6 +15,9 @@
 	select * from lst_params_app where param_type = #{param_type}
   </select>
   
+     <select id="selectAllParamType" resultType="com.ekalife.model.ParamSimpleString">
+		select distinct(param_type) as paramType from lst_params_app  group by param_type
+  	</select>
   
     <select id="selectParamByTypeNew" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and active = 1

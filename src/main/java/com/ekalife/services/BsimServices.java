@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ekalife.dao.BsimDao;
 import com.ekalife.model.Param;
+import com.ekalife.model.ParamSimpleString;
 import com.ekalife.model.ProductFunction;
 
 @Service
@@ -33,6 +34,12 @@ public class BsimServices implements Bsim{
 		params.put("lsdbs_number", lsdbs_number);
 		params.put("param_type", paramType);
 		return (List<Param>)dao.selectParamByType(params);
+	}
+	
+	public List<ParamSimpleString> selectAllParamType(){
+		BsimDao dao=sqlSession.getMapper(BsimDao.class);
+		return (List<ParamSimpleString>)dao.selectAllParamType();
+		
 	}
 	
 	public List<ProductFunction> selectProductFunction(int lsbs_id,int lsdbs_number,int carabayar, String kurs){

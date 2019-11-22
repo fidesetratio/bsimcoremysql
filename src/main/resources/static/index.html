@@ -64,7 +64,7 @@ $(document).ready(function() {
 		                    { "data":"input_date_str"}
 		                ],
 		        ajax: {
-		            url: "monitor/list",
+		            url: "crud/list",
 		            type: "POST",
 		            contentType : "application/json; charset=utf-8",			    
 		            data: function ( d ) {
@@ -78,7 +78,7 @@ $(document).ready(function() {
 		$("#fixbutton").click(function(e){
    		 var datatmp  = table.rows({selected:true}).data().toArray()
    		 $.ajax({
-			    url: "monitor/fix",
+			    url: "crud/fix",
 			    type: 'post',
 			    dataType: 'json',
 			    contentType: 'application/json',
@@ -86,10 +86,7 @@ $(document).ready(function() {
 			    processData: false,
 			    success: function( data, textStatus, jQxhr) {
 			    		alert(data.message);
-			   
-			    	
-			    	
-			    }
+				    }
 			});
 	
    		});
@@ -111,7 +108,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 			  currentId = 'tabs-kedua';
 			 
 			  $.ajax({
-				    url: "monitor/viewdetail",
+				    url: "crud/viewdetail",
 				    type: 'post',
 				    dataType: 'json',
 				    contentType: 'application/json',

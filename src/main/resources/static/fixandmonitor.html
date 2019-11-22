@@ -72,13 +72,12 @@ $(document).ready(function() {
 				processing : true, 
 				serverSide : true,
 				 
-			    columns: [  { "data": "noid" },
-		                    { "data": "fullname" },
-		                    { "data": "no_va" },
-		                    { "data":"input_date_str"}
+			    columns: [  { "data": "paramType" },
+		                    { "data": "paramType" }
+		                    
 		                ],
 		        ajax: {
-		            url: "monitor/list",
+		            url: "crud/list",
 		            type: "POST",
 		            contentType : "application/json; charset=utf-8",			    
 		            data: function ( d ) {
@@ -92,7 +91,7 @@ $(document).ready(function() {
 		$("#fixbutton").click(function(e){
    		 var datatmp  = table.rows({selected:true}).data().toArray()
    		 $.ajax({
-			    url: "monitor/fix",
+			    url: "crud/fix",
 			    type: 'post',
 			    dataType: 'json',
 			    contentType: 'application/json',
@@ -126,7 +125,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 			  currentId = 'tabs-kedua';
 			  $("#history").find(".res").remove();
 				$.ajax({
-				    url: "monitor/viewdetail",
+				    url: "crud/viewdetail",
 				    type: 'post',
 				    dataType: 'json',
 				    contentType: 'application/json',
@@ -184,8 +183,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
             <tr>
                 <th></th>
                 <th>FullName</th>
-                <th>Noid</th>
-                <th>Input Date</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -195,9 +193,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
             <tr>
                  <th></th>
                 <th>FullName</th>
-                <th>Noid</th>
-                   <th>Input Date</th>
-             
+               
             </tr>
         </tfoot>
     </table>
