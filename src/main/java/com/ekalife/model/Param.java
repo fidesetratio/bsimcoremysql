@@ -12,6 +12,7 @@ public class Param {
 	private String variable_name;
 	private String variable_type;
 	private String variable_value;
+	private String jenis_object;
 	private int allow_internal_input;
 	private int allow_as_output;
 	private int is_mapping_object;
@@ -144,6 +145,12 @@ public class Param {
 	}
 	public void setActive(int active) {
 		this.active = active;
+	}
+	public String getJenis_object() {
+		return jenis_object;
+	}
+	public void setJenis_object(String jenis_object) {
+		this.jenis_object = jenis_object;
 	}
 	
 

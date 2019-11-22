@@ -18,8 +18,10 @@ create table lst_params_app(
 	object_var_def_val varchar(100),
 	object_validator_scripts varchar(1000),
 	object_result_message varchar(100),
+	jenis_object varchar(100),
 	description varchar(200),
 	active int not null default 0,
+	
 	primary key(id)
 );
 

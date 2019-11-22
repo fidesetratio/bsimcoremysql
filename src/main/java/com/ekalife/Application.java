@@ -1,4 +1,4 @@
-package com.ekalife.app;
+package com.ekalife;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
