@@ -1,10 +1,10 @@
-package com.app.dao;
+package com.ekalife.dao;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.app.model.Param;
-import com.app.model.ProductFunction;
+import com.ekalife.model.Param;
+import com.ekalife.model.ProductFunction;
 
 public interface BsimDao {
 	  List<Param> selectParam(HashMap<String, Object> params);

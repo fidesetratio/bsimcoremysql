@@ -1,4 +1,4 @@
-package com.app.request;
+package com.ekalife.request;
 
 import java.util.HashMap;
 

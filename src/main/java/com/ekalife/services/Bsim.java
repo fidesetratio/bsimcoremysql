@@ -1,10 +1,10 @@
-package com.app.services;
+package com.ekalife.services;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.app.model.Param;
-import com.app.model.ProductFunction;
+import com.ekalife.model.Param;
+import com.ekalife.model.ProductFunction;
 
 public interface Bsim {
 	

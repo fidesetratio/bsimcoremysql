@@ -1,4 +1,4 @@
-package com.app.services;
+package com.ekalife.services;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dao.BsimDao;
-import com.app.model.Param;
-import com.app.model.ProductFunction;
+import com.ekalife.dao.BsimDao;
+import com.ekalife.model.Param;
+import com.ekalife.model.ProductFunction;
 
 @Service
 public class BsimServices implements Bsim{

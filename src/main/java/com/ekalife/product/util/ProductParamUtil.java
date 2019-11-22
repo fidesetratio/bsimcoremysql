@@ -1,10 +1,10 @@
-package com.app.product.util;
+package com.ekalife.product.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.app.model.Param;
-import com.app.services.Bsim;
+import com.ekalife.model.Param;
+import com.ekalife.services.Bsim;
 
 public class ProductParamUtil {
 	

@@ -1,4 +1,4 @@
-package com.app.model.product;
+package com.ekalife.model.product;
 
 import java.util.HashMap;
 

@@ -1,14 +1,14 @@
-package com.app.model.product;
+package com.ekalife.model.product;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.app.exception.ParamException;
-import com.app.model.Param;
-import com.app.model.ProductFunction;
-import com.app.product.util.ProductParam;
-import com.app.request.ProductRequest;
-import com.app.services.Bsim;
+import com.ekalife.exception.ParamException;
+import com.ekalife.model.Param;
+import com.ekalife.model.ProductFunction;
+import com.ekalife.product.util.ProductParam;
+import com.ekalife.request.ProductRequest;
+import com.ekalife.services.Bsim;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;

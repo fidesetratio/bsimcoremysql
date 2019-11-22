@@ -1,6 +1,6 @@
-package com.app.product.util;
+package com.ekalife.product.util;
 
-import com.app.services.Bsim;
+import com.ekalife.services.Bsim;
 
 public class ProductParam extends ProductParamUtil {
 

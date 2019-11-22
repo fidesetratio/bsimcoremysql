@@ -1,4 +1,4 @@
-package com.app.model;
+package com.ekalife.model;
 /**
  * 
  * @author Patar Timotius

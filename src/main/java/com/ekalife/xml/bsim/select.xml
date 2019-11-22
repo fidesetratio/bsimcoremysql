@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-<mapper namespace='com.app.dao.BsimDao'>
- <select id="selectParam" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+<mapper namespace='com.ekalife.dao.BsimDao'>
+ <select id="selectParam" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and active = 1
   </select>
-  <select id="selectParamNew" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+  <select id="selectParamNew" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and cb = #{carabayar} and kurs=#{kurs} and active = 1
   </select>
-  <select id="selectParamByType" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+  <select id="selectParamByType" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and cb = #{carabayar} and kurs=#{kurs} and active = 1
   </select>
-    <select id="selectParamByTypeNew" resultType="com.app.model.Param" parameterType="java.util.HashMap">
+    <select id="selectParamByTypeNew" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and active = 1
   </select>
-    <select id="selectProductFunction" resultType="com.app.model.ProductFunction" parameterType="java.util.HashMap">
+    <select id="selectProductFunction" resultType="com.ekalife.model.ProductFunction" parameterType="java.util.HashMap">
 	select * from lst_products_function where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and cb = #{carabayar} and kurs=#{kurs} and active = 1 order by priority asc
   </select>
   <select id="selectCommon" resultType="java.util.HashMap">

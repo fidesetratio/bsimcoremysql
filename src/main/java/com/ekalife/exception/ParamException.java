@@ -1,4 +1,4 @@
-package com.app.exception;
+package com.ekalife.exception;
 
 public class ParamException extends IllegalArgumentException{
 	

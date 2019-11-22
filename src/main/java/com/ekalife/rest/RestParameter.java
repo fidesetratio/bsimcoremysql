@@ -1,4 +1,4 @@
-package com.app.rest;
+package com.ekalife.rest;
 
 import java.text.ParseException;
 import java.util.List;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.model.Param;
-import com.app.model.product.Product;
-import com.app.model.product.ProductResult;
-import com.app.product.util.ProductParamUtil;
-import com.app.request.ProductRequest;
-import com.app.services.Bsim;
+import com.ekalife.model.Param;
+import com.ekalife.model.product.Product;
+import com.ekalife.model.product.ProductResult;
+import com.ekalife.product.util.ProductParamUtil;
+import com.ekalife.request.ProductRequest;
+import com.ekalife.services.Bsim;
 
 
 @RestController
