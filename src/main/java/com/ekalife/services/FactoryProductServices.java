@@ -43,6 +43,7 @@ public class FactoryProductServices {
 		container.put("pembayarPremi", new PembayarPremi());
 		container.put("beneficiary", new Benefeciary());
 		container.put("rekeningClient", new Rekening_client());
+		
 		List<Param> listOfParams = selectSetupProject(setupProduct);
 		for(Param p :listOfParams){
 				String jenis_object = p.getJenis_object();
@@ -100,6 +101,12 @@ public class FactoryProductServices {
 				
 		}
 		
+		cmdeditbac.setPemegang((Pemegang)container.get("pemegang"));
+		cmdeditbac.setAddressbilling((AddressBilling)container.get("addressBilling"));
+		cmdeditbac.setDatausulan((Datausulan)container.get("datausulan"));
+		cmdeditbac.setTertanggung((Tertanggung)container.get("tertanggung"));
+		cmdeditbac.setAccount_recur((Account_recur)container.get("accountRecur"));
+		cmdeditbac.setPembayarPremi((PembayarPremi)container.get("pembayarPremi"));
 		
 		return cmdeditbac;
 	}

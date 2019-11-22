@@ -1,0 +1,241 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>DataTables example - jQuery UI ThemeRoller</title>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<link rel="stylesheet" type="text/css" href="css/dataTables.jqueryui.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css">
+
+
+<script type="text/javascript" language="javascript" src="js/jquery-3.3.1.js"></script>
+
+<script type="text/javascript" language="javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/dataTables.jqueryui.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/dataTables.select.min.js"></script>
+<style type="text/css">
+
+    table{
+
+        width: 100%;
+
+        margin: 20px 0;
+
+        border-collapse: collapse;
+
+    }
+
+    table, th, td{
+
+        border: 1px solid #cdcdcd;
+
+    }
+
+    table th, table td{
+
+        padding: 5px;
+
+        text-align: left;
+
+    }
+
+</style>
+
+<script type="text/javascript" class="init">
+	
+$(document).ready(function() {
+	
+	$("#nav li").hover(
+			function(){
+				$(this).children('ul').hide();
+				$(this).children('ul').slideDown('fast');
+			},
+			function () {
+				$('ul', this).slideUp('fast');            
+			});
+	
+		var table = $('#example').DataTable({
+			  columnDefs: [ {
+			            orderable: false,
+			            className: 'select-checkbox',
+			            targets:   0
+			        } ],
+			        select: {
+			            style:    'os',
+			            selector: 'td:first-child'
+			        },
+			        order: [[ 1, 'asc' ]],
+			
+				processing : true, 
+				serverSide : true,
+				 
+			    columns: [  { "data": "noid" },
+		                    { "data": "fullname" },
+		                    { "data": "no_va" },
+		                    { "data":"input_date_str"}
+		                ],
+		        ajax: {
+		            url: "monitor/list",
+		            type: "POST",
+		            contentType : "application/json; charset=utf-8",			    
+		            data: function ( d ) {
+		                return JSON.stringify(d); // NOTE: you also need to stringify POST payload
+		            }
+				}
+		        
+		});
+	
+	
+		$("#fixbutton").click(function(e){
+   		 var datatmp  = table.rows({selected:true}).data().toArray()
+   		 $.ajax({
+			    url: "monitor/fix",
+			    type: 'post',
+			    dataType: 'json',
+			    contentType: 'application/json',
+			    data: JSON.stringify(datatmp[0]),
+			    processData: false,
+			    success: function( data, textStatus, jQxhr) {
+			    		alert(data.message);
+			   
+			    	
+			    	
+			    }
+			});
+	
+   		});
+		
+		
+var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
+		  var count = table.rows( { selected: true } ).count();
+		  var selectedTab = ttabs.tabs('option','active');
+		  var datatmp  = table.rows({selected:true}).data().toArray();
+		  var currentId = 'tabs-pertama';
+		  
+		  
+		  if(count<=0){
+			  $( "#tabs" ).tabs({ active: 0 });
+			  return;
+		  }
+		
+		  if(selectedTab == 1){
+			  
+			  currentId = 'tabs-kedua';
+			  $("#history").find(".res").remove();
+				$.ajax({
+				    url: "monitor/viewdetail",
+				    type: 'post',
+				    dataType: 'json',
+				    contentType: 'application/json',
+				    data: JSON.stringify(datatmp[0]),
+				    processData: false,
+				    success: function( data, textStatus, jQxhr) {
+				    	$("#noid").text(data.noid);
+				    	$("#notemp").text(data.notemp);
+				    	$("#flagpayment").text(data.flag_payment);
+				    	$("#flagproduction").text(data.flag_production);
+				    	$("#flagsubmit").text(data.flag_submit);
+				    	$("#regspaj").text(data.reg_spaj);
+				    	$("#nova").text(data.nova);
+				    	$("#production_spaj").text(data.production_spaj);
+				    	$("#process_date").text(data.process_date);
+				    	$("#status").text(data.status);
+				    	$("#trans_id").text(data.transid);
+				    	$("#pos_date").text(data.pos_date);
+				    	$("#fixbutton").attr("disabled",false);
+				    	
+				    	$.each(data.historyProduct, function (i, item) {
+				    		var markup = "<tr class='res'><td>"+item.reg_spaj+"</td><td>" + item.status + "</td><td>" + item.start_date + "</td><td>" + item.trans_id + "</td><td>" + item.noid + "</td></tr>";
+				    		$("#history").append(markup);
+				    	});
+				      }
+				});
+		
+			  
+		  };
+		
+		  
+		  
+		//  alert(JSON.stringify(data));
+
+	}});	
+} );
+
+	</script>
+	
+	
+	
+	
+<body>
+<h2>Fix And Monitor</h2>
+
+
+	<div id="tabs">
+		<ul>
+		<li><a href="#tabs-pertama">Search</a></li>
+			<li><a href="#tabs-kedua">Detail</a></li>
+		</ul>
+		<div id="tabs-pertama">
+		<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>FullName</th>
+                <th>Noid</th>
+                <th>Input Date</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+        </tbody>
+        <tfoot>
+            <tr>
+                 <th></th>
+                <th>FullName</th>
+                <th>Noid</th>
+                   <th>Input Date</th>
+             
+            </tr>
+        </tfoot>
+    </table>
+				
+		
+		
+		</div>
+		<div id="tabs-kedua">
+			<table>
+			<tr><td>NOID</td><td>:</td><td><div id="noid"></div></td></tr>
+			
+			<tr><td>NOTEMP</td><td>:</td><td><div id="notemp"></div></td></tr>
+				<tr><td>FLAG PAYMENT</td><td>:</td><td><div id="flagpayment"></div></td></tr>
+				<tr><td>FLAG PRODUCTION</td><td>:</td><td><div id="flagproduction"></div></td></tr>
+				<tr><td>FLAG SUBMIT</td><td>:</td><td><div id="flagsubmit"></div></td></tr>
+				<tr><td>REG SPAJ</td><td>:</td><td><div id="regspaj"></div></td></tr>
+				 <tr><td>NO VA</td><td>:</td><td><div id="nova"></div></td></tr>
+				<tr><td>PRODUCTION SPAJ</td><td>:</td><td><div id="production_spaj"></div></td></tr>
+				<tr><td>PROCESS DATE</td><td>:</td><td><div id="process_date"></div></td></tr>
+				<tr><td>STATUS</td><td>:</td><td><div id="status"></div></td></tr>
+				<tr><td>TRANS ID</td><td>:</td><td><div id="trans_id"></div></td></tr>
+				<tr><td>POS DATE</td><td>:</td><td><div id="pos_date"></div></td></tr>
+			</table>
+			
+			<table>
+				<tr><td><input id="fixbutton" disabled type="submit" name="submit" value="Fix With Process Berjalan"/></td></tr>
+			</table>
+			<h3>History Run</h3>
+			<table id="history" border="1">
+				<tr><td>REG_SPAJ</td><td>STATUS</td><td>START DATE</td><td>TRANS_ID</td><td>NOID</td></tr>
+				
+			</table>
+			
+		</div>
+	
+	</div>
+	
+	
+
+</body>
+</html>
