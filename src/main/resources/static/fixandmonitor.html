@@ -72,8 +72,8 @@ $(document).ready(function() {
 				processing : true, 
 				serverSide : true,
 				 
-			    columns: [  { "data": "paramType" },
-		                    { "data": "paramType" }
+			    columns: [  { "data": "object_name" },
+		                    { "data": "object_name" }
 		                    
 		                ],
 		        ajax: {
@@ -132,7 +132,9 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 				    data: JSON.stringify(datatmp[0]),
 				    processData: false,
 				    success: function( data, textStatus, jQxhr) {
-				    	$("#noid").text(data.noid);
+				    //	alert(data.object_name);
+				     $("#title").text(data.object_name);
+				    	/* $("#noid").text(data.noid);
 				    	$("#notemp").text(data.notemp);
 				    	$("#flagpayment").text(data.flag_payment);
 				    	$("#flagproduction").text(data.flag_production);
@@ -145,11 +147,46 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 				    	$("#trans_id").text(data.transid);
 				    	$("#pos_date").text(data.pos_date);
 				    	$("#fixbutton").attr("disabled",false);
-				    	
-				    	$.each(data.historyProduct, function (i, item) {
-				    		var markup = "<tr class='res'><td>"+item.reg_spaj+"</td><td>" + item.status + "</td><td>" + item.start_date + "</td><td>" + item.trans_id + "</td><td>" + item.noid + "</td></tr>";
+				    	 */
+				    	 
+				    	    function addUser() {
+				    	      var valid = true;
+				    	  
+				    	      return valid;
+				    	    }
+				    	 
+				    	 
+				    	 
+				    	  var dialog = $( "#dialog-form" ).dialog({
+			    		        autoOpen: false,
+			    		        height: 400,
+			    		        width: 350,
+			    		        modal: true,
+			    		        buttons: {
+			    		          "Modify": addUser,
+			    		          Cancel: function() {
+			    		            dialog.dialog( "close" );
+			    		          }
+			    		        },
+			    		        close: function() {
+			    		         // form[ 0 ].reset();
+			    		       //   allFields.removeClass( "ui-state-error" );
+			    		        }
+			    		      });
+					
+				    	$.each(data.attribute, function (i, item) {
+				    		
+				    		var markup = "<tr class='res'><td>"+item.object_var+"</td><td>" + item.object_var_type + "</td><td>" + item.object_var_def_val + "</td><td> <input class='modifyme' type='button' name='Modify' value='Modify'/> </td></tr>";
 				    		$("#history").append(markup);
+				    		
+				    	
 				    	});
+				    	
+				    	$("#history").find(".modifyme").click(function (){
+				    		 
+			    			 dialog.dialog( "open" );
+			    		});
+				    	
 				      }
 				});
 		
@@ -170,6 +207,28 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 	
 <body>
 <h2>Fix And Monitor</h2>
+
+
+<div id="dialog-form" title="Modify" style="display:none">
+
+  <form>
+  <table>
+  	<tr><td>Nama Parameter</td><td>  <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
+  	<tr><td>Type</td><td>
+  	<select name="type">
+  	<option>STRING</option>
+  	<option>INTEGER</option>
+  	<option>DATE</option>
+  	</select>
+  	</td></tr>
+	<tr><td>Default Value</td><td>  <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
+
+  </table>
+   <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+   
+  </form>
+</div>
+
 
 
 	<div id="tabs">
@@ -202,28 +261,10 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 		
 		</div>
 		<div id="tabs-kedua">
-			<table>
-			<tr><td>NOID</td><td>:</td><td><div id="noid"></div></td></tr>
-			
-			<tr><td>NOTEMP</td><td>:</td><td><div id="notemp"></div></td></tr>
-				<tr><td>FLAG PAYMENT</td><td>:</td><td><div id="flagpayment"></div></td></tr>
-				<tr><td>FLAG PRODUCTION</td><td>:</td><td><div id="flagproduction"></div></td></tr>
-				<tr><td>FLAG SUBMIT</td><td>:</td><td><div id="flagsubmit"></div></td></tr>
-				<tr><td>REG SPAJ</td><td>:</td><td><div id="regspaj"></div></td></tr>
-				 <tr><td>NO VA</td><td>:</td><td><div id="nova"></div></td></tr>
-				<tr><td>PRODUCTION SPAJ</td><td>:</td><td><div id="production_spaj"></div></td></tr>
-				<tr><td>PROCESS DATE</td><td>:</td><td><div id="process_date"></div></td></tr>
-				<tr><td>STATUS</td><td>:</td><td><div id="status"></div></td></tr>
-				<tr><td>TRANS ID</td><td>:</td><td><div id="trans_id"></div></td></tr>
-				<tr><td>POS DATE</td><td>:</td><td><div id="pos_date"></div></td></tr>
-			</table>
-			
-			<table>
-				<tr><td><input id="fixbutton" disabled type="submit" name="submit" value="Fix With Process Berjalan"/></td></tr>
-			</table>
-			<h3>History Run</h3>
+	
+			<h3>Parameter Object <span id="title"></span></h3>
 			<table id="history" border="1">
-				<tr><td>REG_SPAJ</td><td>STATUS</td><td>START DATE</td><td>TRANS_ID</td><td>NOID</td></tr>
+				<tr><td>Nama Parameter</td><td>Type</td><td>Default Value</td><td>Action</td></tr>
 				
 			</table>
 			

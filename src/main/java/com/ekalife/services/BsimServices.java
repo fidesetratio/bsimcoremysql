@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ekalife.dao.BsimDao;
+import com.ekalife.model.ObjectSimpleString;
 import com.ekalife.model.Param;
 import com.ekalife.model.ParamSimpleString;
 import com.ekalife.model.ProductFunction;
@@ -22,7 +23,6 @@ public class BsimServices implements Bsim{
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("lsbs_id", lsbs_id);
 		params.put("lsdbs_number", lsdbs_number);
-		
 		return (List<Param>)dao.selectParam(params);
 	}
 	
@@ -36,9 +36,24 @@ public class BsimServices implements Bsim{
 		return (List<Param>)dao.selectParamByType(params);
 	}
 	
+	public List<Param> selectParamTypeAndObjectName(String param_type,String object_name){
+		BsimDao dao=sqlSession.getMapper(BsimDao.class);
+		HashMap<String,Object> params = new HashMap<>();
+		params.put("param_type", param_type);
+		params.put("object_name", object_name);
+		return (List<Param>)dao.selectParamTypeAndObjectName(params);
+	}
+	
+	
 	public List<ParamSimpleString> selectAllParamType(){
 		BsimDao dao=sqlSession.getMapper(BsimDao.class);
 		return (List<ParamSimpleString>)dao.selectAllParamType();
+		
+	}
+	
+	public List<ObjectSimpleString> selectAllObjectType(){
+		BsimDao dao=sqlSession.getMapper(BsimDao.class);
+		return (List<ObjectSimpleString>)dao.selectAllObjectType();
 		
 	}
 	

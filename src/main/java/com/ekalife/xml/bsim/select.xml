@@ -11,12 +11,21 @@
   <select id="selectParamByType" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where lsbs_id =#{lsbs_id} and lsdbs_number =#{lsdbs_number} and param_type = #{param_type} and cb = #{carabayar} and kurs=#{kurs} and active = 1
   </select>
+  
+    <select id="selectParamTypeAndObjectName" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
+	select * from lst_params_app where  trim(param_type) = #{param_type} and object_name = #{object_name}
+  </select>
+  
    <select id="selectSetupProject" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where param_type = #{param_type}
   </select>
   
      <select id="selectAllParamType" resultType="com.ekalife.model.ParamSimpleString">
 		select distinct(param_type) as paramType from lst_params_app  group by param_type
+  	</select>
+  	
+  	<select id="selectAllObjectType" resultType="com.ekalife.model.ObjectSimpleString">
+			select object_name from lst_params_app  where trim(param_type) = 'setupproduct' group by object_name desc  
   	</select>
   
     <select id="selectParamByTypeNew" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
