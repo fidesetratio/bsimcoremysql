@@ -53,4 +53,12 @@ public class CrudRestParameter {
 		System.out.println(detailObject.getObject_name());
 		return detailObject;
 	};
+	
+	
+	@RequestMapping(value="/viewdetailbyid",method=RequestMethod.POST,produces="application/json")
+	public @ResponseBody Param viewdetailbyid(@RequestBody Param param){
+		System.out.println("param"+param.getId());
+		Param p = services.selectParamById(param.getId());
+		return p;
+	};
 }

@@ -16,6 +16,10 @@
 	select * from lst_params_app where  trim(param_type) = #{param_type} and object_name = #{object_name}
   </select>
   
+    <select id="selectParamById" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
+	select * from lst_params_app where   id = #{id}
+  </select>
+  
    <select id="selectSetupProject" resultType="com.ekalife.model.Param" parameterType="java.util.HashMap">
 	select * from lst_params_app where param_type = #{param_type}
   </select>

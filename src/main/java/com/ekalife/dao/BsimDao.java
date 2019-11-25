@@ -15,6 +15,8 @@ public interface BsimDao {
 	  List<Param> selectParamByTypeNew(HashMap<String, Object> params);
 	  List<Param> selectSetupProject(HashMap<String, Object> params);
 	  List<Param> selectParamTypeAndObjectName(HashMap<String, Object> params);
+	  Param selectParamById(HashMap<String, Object> params);
+		
 	  List<ParamSimpleString> selectAllParamType();
 	  List<ObjectSimpleString> selectAllObjectType();
 	  List<ProductFunction> selectProductFunction(HashMap<String, Object> params);

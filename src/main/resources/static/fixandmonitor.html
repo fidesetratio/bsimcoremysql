@@ -100,8 +100,6 @@ $(document).ready(function() {
 			    success: function( data, textStatus, jQxhr) {
 			    		alert(data.message);
 			   
-			    	
-			    	
 			    }
 			});
 	
@@ -124,6 +122,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 			  
 			  currentId = 'tabs-kedua';
 			  $("#history").find(".res").remove();
+			  alert( JSON.stringify(datatmp[0]));
 				$.ajax({
 				    url: "crud/viewdetail",
 				    type: 'post',
@@ -149,9 +148,16 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 				    	$("#fixbutton").attr("disabled",false);
 				    	 */
 				    	 
-				    	    function addUser() {
+				    	    function modifyItem() {
 				    	      var valid = true;
-				    	  
+				    	     var formdata = $("#modify-form").serializeArray();
+				    	     var data = {};
+				    	     $(formdata ).each(function(index, obj){
+				    	         data[obj.name] = obj.value;
+				    	     });
+				    	     
+				    	     alert(JSON.stringify(data));
+				    	 		
 				    	      return valid;
 				    	    }
 				    	 
@@ -163,7 +169,7 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 			    		        width: 350,
 			    		        modal: true,
 			    		        buttons: {
-			    		          "Modify": addUser,
+			    		          "Modify": modifyItem,
 			    		          Cancel: function() {
 			    		            dialog.dialog( "close" );
 			    		          }
@@ -176,15 +182,35 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 					
 				    	$.each(data.attribute, function (i, item) {
 				    		
-				    		var markup = "<tr class='res'><td>"+item.object_var+"</td><td>" + item.object_var_type + "</td><td>" + item.object_var_def_val + "</td><td> <input class='modifyme' type='button' name='Modify' value='Modify'/> </td></tr>";
+				    		var markup = "<tr class='res'><td>"+item.object_var+"</td><td>" + item.object_var_type + "</td><td>" + item.object_var_def_val + "</td><td> <input class='modifyme' type='button' name='"+item.id+"' value='Modify'/></td></tr>";
 				    		$("#history").append(markup);
 				    		
 				    	
 				    	});
 				    	
 				    	$("#history").find(".modifyme").click(function (){
-				    		 
-			    			 dialog.dialog( "open" );
+				    		var id = $(this).attr("name");
+				    		var d = {id:id};
+				    	
+				    		$.ajax({
+							    url: "crud/viewdetailbyid",
+							    type: 'post',
+							    dataType: 'json',
+							    contentType: 'application/json',
+							    data: JSON.stringify(d),
+							    processData: false,
+							    success: function( data, textStatus, jQxhr) {
+									 $("#nameparam").val(data.object_var);
+									 $("#paramdefaultvalue").val(data.object_var_def_val);
+									 $("#paramtype").val(data.object_var_type);
+					    			 dialog.dialog( "open" );
+							    }
+				    			
+				    		});
+				    		
+
+				    		
+				    		
 			    		});
 				    	
 				      }
@@ -211,17 +237,17 @@ var ttabs =	$( "#tabs" ).tabs({activate: function( event, ui ) {
 
 <div id="dialog-form" title="Modify" style="display:none">
 
-  <form>
+  <form id="modify-form">
   <table>
-  	<tr><td>Nama Parameter</td><td>  <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
+  	<tr><td>Nama Parameter</td><td>  <input type="text" name="name" id="nameparam" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
   	<tr><td>Type</td><td>
-  	<select name="type">
-  	<option>STRING</option>
-  	<option>INTEGER</option>
-  	<option>DATE</option>
+  	<select name="type" id="paramtype">
+			  	<option value="String">STRING</option>
+			  	<option value="Integer">INTEGER</option>
+			  	<option value="Date">DATE</option>
   	</select>
   	</td></tr>
-	<tr><td>Default Value</td><td>  <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
+	<tr><td>Default Value</td><td>  <input type="text" name="defaultvalue" id="paramdefaultvalue" value="Jane Smith" class="text ui-widget-content ui-corner-all"></td></tr>
 
   </table>
    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
