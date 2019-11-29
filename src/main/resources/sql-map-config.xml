@@ -26,6 +26,7 @@
  
  <mappers>
         <mapper resource="com/ekalife/xml/bsim/select.xml" />
+       	<mapper resource="com/ekalife/xml/bsim/update.xml" />
 </mappers>
  
  

@@ -61,4 +61,12 @@ public class CrudRestParameter {
 		Param p = services.selectParamById(param.getId());
 		return p;
 	};
+
+	@RequestMapping(value="/updateParam",method=RequestMethod.POST,produces="application/json")
+	public @ResponseBody Param updateParam(@RequestBody Param param){
+		System.out.println("updateParam"+param.getId());
+		services.updateParam(param.getId(), param.getObject_var_def_val(), param.getObject_var(), param.getObject_var_type());
+		Param p = services.selectParamById(param.getId());
+		return p;
+	};
 }

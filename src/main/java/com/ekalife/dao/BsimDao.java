@@ -23,4 +23,6 @@ public interface BsimDao {
 	  List<HashMap<String,Object>> selectListCommon(HashMap<String, Object> params);
 	  HashMap<String,Object> selectCommon(HashMap<String, Object> params);
 	  
+	  
+	 void updateParam(HashMap<String, Object> params);
 }

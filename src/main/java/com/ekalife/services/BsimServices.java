@@ -36,6 +36,16 @@ public class BsimServices implements Bsim{
 		return (List<Param>)dao.selectParamByType(params);
 	}
 	
+	public void updateParam(Integer id,String object_var_def_val,String object_var,String object_var_type){
+		BsimDao dao=sqlSession.getMapper(BsimDao.class);
+		HashMap<String,Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("object_var_def_val", object_var_def_val);
+		params.put("object_var", object_var);
+		params.put("object_var_type", object_var_type);
+		dao.updateParam(params);
+	}
+	
 	public List<Param> selectParamTypeAndObjectName(String param_type,String object_name){
 		BsimDao dao=sqlSession.getMapper(BsimDao.class);
 		HashMap<String,Object> params = new HashMap<>();

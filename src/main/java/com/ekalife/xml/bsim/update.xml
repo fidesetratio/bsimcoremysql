@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.ekalife.dao.BsimDao'>
+
+   <update id="updateParam" parameterType="java.util.HashMap">
+         update lst_params_app
+         set object_var_type = #{object_var_type},
+         object_var_def_val = #{object_var_def_val},
+         object_var = #{object_var}
+		 where id = #{id}
+    </update>
+ </mapper>
