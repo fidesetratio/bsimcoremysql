@@ -62,13 +62,27 @@
 	    <artifactId>mybatis-spring</artifactId>
 	    <version>${ibatis.spring.version}</version>
 	</dependency> 
-
-	
 	<dependency>
-	    <groupId>com.lowagie</groupId>
-	    <artifactId>itext</artifactId>
-	    <version>4.2.2</version>
-	</dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.0.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.itextpdf.tool</groupId>
+			<artifactId>xmlworker</artifactId>
+			<version>5.5.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.5.11</version>
+		</dependency>
 	
 	<dependency>
         <groupId>com.itextpdf</groupId>
